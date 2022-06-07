@@ -117,6 +117,6 @@ body {
   color: #aee0f8;
 }
 
-.git-link {
-  color: #aee0f8;
+.nice-color {
+  color: #aee0f8 !important;
 }
