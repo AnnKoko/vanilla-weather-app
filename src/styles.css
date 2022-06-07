@@ -7,7 +7,7 @@ body {
 .container {
   display: inline-block;
   background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
-  margin-top: 20px;
+  margin: 20px auto;
   border-radius: 30px;
   width: 40%;
 }
@@ -110,4 +110,13 @@ body {
 .city-name,
 #weather-desc {
   text-transform: capitalize;
+}
+
+.git-link {
+  margin: 5px auto 10px;
+  color: #aee0f8;
+}
+
+.git-link {
+  color: #aee0f8;
 }
