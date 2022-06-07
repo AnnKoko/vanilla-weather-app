@@ -1,0 +1,113 @@
+body {
+  font-family: "Overpass", sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+.container {
+  display: inline-block;
+  background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  margin-top: 20px;
+  border-radius: 30px;
+  width: 80%;
+}
+
+.search-field-cont {
+  display: inline-flex;
+  justify-content: space-between;
+  background: transparent;
+  margin: 20px auto;
+  padding: 7px 7px;
+  width: 100%;
+}
+
+.search-field-cont i {
+  color: #fff;
+  font-size: 20px;
+  margin: 4px auto;
+}
+
+.search-field {
+  background: transparent;
+  border: none;
+  color: #fff;
+  width: 90%;
+  font-size: 20px;
+}
+
+.search-field:focus {
+  outline: none;
+}
+
+.search-btn {
+  height: 30px;
+  width: 30px;
+  background-color: transparent;
+  border: none;
+}
+
+.container .row {
+  width: 90%;
+  margin: auto;
+  font-weight: 900;
+}
+
+.row .city-name {
+  text-align: left;
+  line-height: 45px;
+  font-size: 25px;
+}
+.row .curr-date {
+  text-align: right;
+  line-height: 45px;
+  font-size: 15px;
+}
+
+.row .curr-weather-icon {
+  margin: auto;
+}
+
+.row .curr-weather-info h3 {
+  text-align: left;
+  font-weight: 800;
+  font-size: 30px;
+  padding: 0px 20px;
+}
+
+.row .curr-weather-info p {
+  text-align: left;
+  padding: 0px 20px;
+}
+
+.row .week-weather-day h4,
+.row .week-weather-temp h4 {
+  line-height: 40px;
+  margin: 5px;
+}
+
+.row.forecast:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.curr-weather-info a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.curr-weather-info a:hover {
+  text-shadow: 2px 2px 8px rgb(255, 255, 255);
+}
+
+.curr-pos {
+  font-size: 25px;
+  margin: 29px auto;
+  cursor: pointer;
+}
+.curr-pos:hover {
+  text-shadow: 2px 2px 8px rgb(255, 255, 255);
+}
+
+.city-name,
+#weather-desc {
+  text-transform: capitalize;
+}
