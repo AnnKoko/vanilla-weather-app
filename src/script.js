@@ -38,12 +38,13 @@ form.addEventListener("submit", findCity);
 
 function showCurrWeather(response) {
   let weatherData = response.data;
-  console.log(weatherData);
+
   let currLocation = weatherData.name,
     description = weatherData.weather[0].description,
     humidility = weatherData.main.humidity,
     temp = Math.round(weatherData.main.temp),
-    wind = weatherData.wind.speed;
+    wind = weatherData.wind.speed,
+    image = weatherData.weather[0].icon;
 
   let cityName = document.querySelector(".city-name");
   cityName.innerHTML = currLocation;
@@ -55,6 +56,9 @@ function showCurrWeather(response) {
   weatherHum.innerHTML = humidility;
   let weatherWind = document.querySelector("#weather-wind");
   weatherWind.innerHTML = wind;
+  let imageEl = document.querySelector("#icon");
+  imageEl.setAttribute("src", `https://openweathermap.org/img/wn/${image}@2x.png`);
+
 }
 
 function handlePosition(position) {
