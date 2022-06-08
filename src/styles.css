@@ -90,12 +90,17 @@ body {
 }
 
 .curr-weather-info a {
-  text-decoration: none;
-  color: #fff;
+  color: #78d1fb8f;
 }
 
-.curr-weather-info a:hover {
+.curr-weather-info a.active {
+  color: #fff;
+  text-decoration: none;
+}
+
+.curr-weather-info a:not(.active):hover {
   text-shadow: 2px 2px 8px rgb(255, 255, 255);
+  cursor: pointer;
 }
 
 .curr-pos {

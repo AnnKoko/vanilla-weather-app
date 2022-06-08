@@ -74,15 +74,21 @@ function getCurrentPosition(event) {
 
 function showFanrenheit(event){
   event.preventDefault();
-  let fahrenheitD = (celcisuisTemperature * 9/5) + 32;
+  let fahrenheitD = Math.round((celcisuisTemperature * 9/5) + 32);
   let currentTemp = document.querySelector("#curr-temp");
   currentTemp.innerHTML = fahrenheitD;
+
+  document.querySelector("#celc-link").classList.remove("active");
+  document.querySelector("#fahrenheit-link").classList.add("active");
 }
 
 function showCelc(event){
   event.preventDefault();
   let currentTemp = document.querySelector("#curr-temp");
   currentTemp.innerHTML = celcisuisTemperature;
+
+  document.querySelector("#fahrenheit-link").classList.remove("active");
+  document.querySelector("#celc-link").classList.add("active");
 }
 
 let date = new Date();
