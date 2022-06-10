@@ -14,6 +14,46 @@ function findCity(event) {
   findCityAPI(inputCity.value)
 }
 
+function showForecast(response){
+  document.querySelectorAll(".forecast").forEach(e => e.remove());
+
+  let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  let html = '';
+  for(let i = 0; i<5; i++){
+    let date = new Date(response.data.daily[i].dt*1000);
+    let day = days[date.getDay()];
+    let img = setImage(response.data.daily[i].weather[0].icon);
+
+    html +=
+    `<div class="row rounded border border-1 border-light p-1 mb-1 forecast">
+      <div class="week-weather-icon col-4">
+        <img src="${img}" width="50" />
+      </div>
+      <div class="week-weather-day col-4">
+        <h4>
+          ${day}
+        </h4>
+      </div>
+      <div class="week-weather-temp col-4">
+        <h4>
+          ${Math.round(response.data.daily[i].temp.min)}°C/${Math.round(response.data.daily[i].temp.max)}°C
+        </h4>
+      </div>
+    </div>`
+  }
+
+  let lastConent = document.querySelector(".today");
+  lastConent.insertAdjacentHTML('afterend', html);
+}
+
+function getForecast(coord){
+  let apiKey = "c41dde6a22dbf0c22ac4f8f5d1f06111";
+  axios
+    .get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&appid=${apiKey}&units=metric`)
+    .then(showForecast)
+}
+
 function showCurrWeather(response) {
   let weatherData = response.data;
 
@@ -36,26 +76,13 @@ function showCurrWeather(response) {
   weatherWind.innerHTML = wind;
   let imageEl = document.querySelector("#icon");
 
-  let imgLink = `https://openweathermap.org/img/wn/${image}@2x.png`;
-  switch(image){
-    case "01n":
-      imgLink = "images/sunny.png";
-      break;
-    case "04d":
-      imgLink = "images/partly_cloudy.png";
-      break;
-    case "04n":
-      imgLink = "images/sunny_s_cloudy.png";
-      break;
-    case "10n":
-      imgLink = "images/rain_light.png";
-      break;
-    default:
-      break;
-  }
+  let imgLink = setImage(image);
 
   imageEl.setAttribute("src", imgLink);
   celcisuisTemperature = temp;
+
+  getForecast(weatherData.coord);
+
 }
 
 function handlePosition(position) {
@@ -89,6 +116,30 @@ function showCelc(event){
 
   document.querySelector("#fahrenheit-link").classList.remove("active");
   document.querySelector("#celc-link").classList.add("active");
+}
+
+function setImage(imageCode){
+  console.log(imageCode)
+  let imgLink = `https://openweathermap.org/img/wn/${imageCode}@2x.png`;
+  switch(imageCode){
+    case "01n":
+    case "01d":
+      imgLink = "images/sunny.png";
+      break;
+    case "04d":
+      imgLink = "images/partly_cloudy.png";
+      break;
+    case "04n":
+      imgLink = "images/sunny_s_cloudy.png";
+      break;
+    case "10n":
+    case "10d":
+      imgLink = "images/rain_light.png";
+      break;
+    default:
+      break;
+  }
+  return imgLink;
 }
 
 let date = new Date();
@@ -129,3 +180,4 @@ let celcLink = document.querySelector("#celc-link");
 celcLink.addEventListener("click", showCelc);
 
 findCityAPI("Toronto");
+//displayForecast();
