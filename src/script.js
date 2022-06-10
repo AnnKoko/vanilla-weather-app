@@ -16,7 +16,6 @@ function findCity(event) {
 
 function showForecast(response){
   document.querySelectorAll(".forecast").forEach(e => e.remove());
-
   let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   let html = '';
@@ -37,7 +36,7 @@ function showForecast(response){
       </div>
       <div class="week-weather-temp col-4">
         <h4>
-          ${Math.round(response.data.daily[i].temp.min)}°C/${Math.round(response.data.daily[i].temp.max)}°C
+          ${Math.round(response.data.daily[i].temp.min)}°/${Math.round(response.data.daily[i].temp.max)}°
         </h4>
       </div>
     </div>`
@@ -80,6 +79,7 @@ function showCurrWeather(response) {
 
   imageEl.setAttribute("src", imgLink);
   celcisuisTemperature = temp;
+  currCoord = weatherData.coord;
 
   getForecast(weatherData.coord);
 
@@ -107,6 +107,11 @@ function showFanrenheit(event){
 
   document.querySelector("#celc-link").classList.remove("active");
   document.querySelector("#fahrenheit-link").classList.add("active");
+
+  let apiKey = "c41dde6a22dbf0c22ac4f8f5d1f06111";
+  axios
+    .get(`https://api.openweathermap.org/data/2.5/onecall?lat=${currCoord.lat}&lon=${currCoord.lon}&appid=${apiKey}&units=imperial`)
+    .then(showForecast)
 }
 
 function showCelc(event){
@@ -116,10 +121,10 @@ function showCelc(event){
 
   document.querySelector("#fahrenheit-link").classList.remove("active");
   document.querySelector("#celc-link").classList.add("active");
+  getForecast(currCoord);
 }
 
 function setImage(imageCode){
-  console.log(imageCode)
   let imgLink = `https://openweathermap.org/img/wn/${imageCode}@2x.png`;
   switch(imageCode){
     case "01n":
@@ -172,6 +177,7 @@ let currPosition = document.querySelector(".curr-pos");
 currPosition.addEventListener("click", getCurrentPosition);
 
 let celcisuisTemperature = null;
+let currCoord = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFanrenheit);
@@ -180,4 +186,3 @@ let celcLink = document.querySelector("#celc-link");
 celcLink.addEventListener("click", showCelc);
 
 findCityAPI("Toronto");
-//displayForecast();
