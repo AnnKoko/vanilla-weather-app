@@ -98,6 +98,9 @@ function handlePosition(position) {
 function getCurrentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(handlePosition);
+  document.querySelector("#fahrenheit-link").classList.remove("active");
+  document.querySelector("#celc-link").classList.add("active");
+  
 }
 
 function showFanrenheit(event){
