@@ -10,7 +10,8 @@ function findCityAPI(cityName){
 function findCity(event) {
   event.preventDefault();
   let inputCity = document.querySelector(".search-field");
-
+  document.querySelector('.active').classList.remove('active');
+  document.querySelector('#celc-link').classList.add('active')
   findCityAPI(inputCity.value)
 }
 
@@ -132,6 +133,8 @@ function setImage(imageCode){
       imgLink = "images/sunny.png";
       break;
     case "04d":
+    case "02d":
+    case "02n":
       imgLink = "images/partly_cloudy.png";
       break;
     case "04n":
